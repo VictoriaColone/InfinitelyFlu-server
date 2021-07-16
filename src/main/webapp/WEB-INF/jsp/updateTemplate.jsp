@@ -23,9 +23,9 @@
         <form action="${pageContext.request.contextPath}/template/updateTemplate" method="post">
             <input type="hidden" name="id" value="${template.getId()}"/>
             模板名称：<input type="text" name="name" value="${template.getName()}"/>
-            模板版本号：<input type="text" name="version" value="${template.getVersion()}"/>
-            模板： <input type="file" name="file">
-            <input type="submit" value="提交"/>
+            模板版本号：<input type="text" name="version" value="${template.getVersion()}"/><br>
+            <a href="javascript:;" class="a-upload"><input type="file" name="" id="file" accept=".xml" display="inline"></a><br>
+            <input type="submit" value="提交" align="center"/>
         </form>
 
     </div>

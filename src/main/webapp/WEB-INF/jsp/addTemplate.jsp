@@ -20,9 +20,10 @@
             </div>
         </div>
     </div>
-    <form action="${pageContext.request.contextPath}/template/addTemplate" method="post">
+    <form action="${pageContext.request.contextPath}/template/addTemplate" method="post" enctype="multipart/form-data">
         模板名称：<input type="text" name="name"><br><br><br>
         模板版本号：<input type="text" name="version"><br><br><br>
+        <a href="javascript:;" class="a-upload"><input type="file" name="" id="file" accept=".xml" display="inline"></a><br>
         <input type="submit" value="添加">
     </form>
 
