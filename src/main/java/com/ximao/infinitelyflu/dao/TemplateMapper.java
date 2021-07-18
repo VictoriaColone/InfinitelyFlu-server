@@ -22,5 +22,7 @@ public interface TemplateMapper {
 
     Template queryTemplateById(@Param("id") int id);
 
+    Template queryTemplateByNameAndVersion(@Param("name") String name, @Param("version") String version);
+
     List<Template> queryAllTemplate();
 }

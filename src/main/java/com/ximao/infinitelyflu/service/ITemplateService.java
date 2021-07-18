@@ -4,6 +4,8 @@ package com.ximao.infinitelyflu.service;
 import com.ximao.infinitelyflu.pojo.Template;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -21,6 +23,8 @@ public interface ITemplateService {
     int updateTemplate(Template template);
 
     Template queryTemplateById(int id);
+
+    void downloadTemplate(HttpServletRequest request, HttpServletResponse response);
 
     List<Template> queryAllTemplate();
 }

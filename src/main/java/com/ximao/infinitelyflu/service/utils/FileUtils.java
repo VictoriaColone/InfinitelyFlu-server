@@ -7,16 +7,14 @@ import java.io.*;
 import java.util.UUID;
 
 /**
- * 模板上传工具类
+ * 文件工具类
  * @author ximao
  * @date 2021/7/18
  */
-public class UploadUtils {
+public class FileUtils {
 
     // 默认上传文件路径
     private static final String UPLOAD_DIR= "/Users/apple/Documents/JavaProjects/InfinitelyFlu-server/src/main/webapp/upload";
-
-    private static final String TAG= "UploadUtils";
 
     public static String upload(MultipartFile multipartFile) {
 
@@ -53,7 +51,6 @@ public class UploadUtils {
             //对文件进行复制
             FileCopyUtils.copy(is,os);
         } catch (IOException e) {
-            System.out.println(TAG + ": " + e);
             e.printStackTrace();
         }finally {
             if (is!=null){
@@ -74,4 +71,5 @@ public class UploadUtils {
         // 返回文件的路径，以便保存到数据库中
         return dir1+File.separator+dir2+File.separator+newFileName;
     }
+
 }
