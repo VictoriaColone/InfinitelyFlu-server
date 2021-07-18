@@ -2,6 +2,7 @@ package com.ximao.infinitelyflu.service;
 
 
 import com.ximao.infinitelyflu.pojo.Template;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
 public interface ITemplateService {
 
     // 对模板CURD
-    int addTemplate(Template template);
+    int addTemplate(Template template, MultipartFile multipartFile);
 
     int deleteTemplateById(int id);
 

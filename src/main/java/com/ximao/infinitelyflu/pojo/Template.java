@@ -21,4 +21,6 @@ public class Template {
 
     private String name;
 
+    private String file;
+
 }

@@ -7,8 +7,8 @@
 
     <!--增加一个Template-->
     <insert id="addTemplate" parameterType="Template">
-        insert into infinitely_flu.template (name, version)
-        values (#{name}, #{version})
+        insert into infinitely_flu.template (name, version, file)
+        values (#{name}, #{version}, #{file})
     </insert>
 
     <!--根据id删除一个Template-->

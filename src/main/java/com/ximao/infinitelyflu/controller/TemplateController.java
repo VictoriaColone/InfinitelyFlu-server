@@ -1,15 +1,21 @@
 package com.ximao.infinitelyflu.controller;
 
 
+import com.sun.net.httpserver.Authenticator;
 import com.ximao.infinitelyflu.pojo.Template;
 import com.ximao.infinitelyflu.service.ITemplateService;
+import org.apache.ibatis.annotations.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.naming.spi.DirStateFactory;
 import java.util.List;
 
 
@@ -41,9 +47,12 @@ public class TemplateController {
         return "addTemplate";
     }
 
-    @RequestMapping("/addTemplate")
-    public String addTemplate(Template template) {
-        templateService.addTemplate(template);
+    @RequestMapping(value = "/addTemplate", method = RequestMethod.POST)
+    public String addTemplate(String name, String version, MultipartFile multipartFile) {
+        Template template = new Template();
+        template.setName(name);
+        template.setVersion(version);
+        templateService.addTemplate(template, multipartFile);
         return "redirect:/template/allTemplate";
     }
 

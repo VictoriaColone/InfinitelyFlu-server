@@ -3,6 +3,8 @@ package com.ximao.infinitelyflu.service.impl;
 import com.ximao.infinitelyflu.dao.TemplateMapper;
 import com.ximao.infinitelyflu.pojo.Template;
 import com.ximao.infinitelyflu.service.ITemplateService;
+import com.ximao.infinitelyflu.service.utils.UploadUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -21,7 +23,9 @@ public class TemplateServiceImpl implements ITemplateService {
         this.templateMapper = templateMapper;
     }
 
-    public int addTemplate(Template template) {
+    public int addTemplate(Template template, MultipartFile multipartFile) {
+        String newPath = UploadUtils.upload(multipartFile);
+        template.setFile(newPath);
         return templateMapper.addTemplate(template);
     }
 
