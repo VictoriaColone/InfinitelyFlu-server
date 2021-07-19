@@ -37,7 +37,7 @@
     <!--根据name和version，下载指定Template-->
     <select id="queryTemplateByNameAndVersion" resultType="Template">
         SELECT * from infinitely_flu.template
-        where name = #{name} and version = #{vesion}
+        where name = #{name} and version = #{version}
     </select>
 
 </mapper>

@@ -18,10 +18,6 @@ import java.util.List;
  */
 public class TemplateServiceImpl implements ITemplateService {
 
-    // 默认下载文件路径
-    private static final String DOWNLOAD_DIR =
-            "/Users/apple/Documents/JavaProjects/InfinitelyFlu-server/src/main/webapp/down";
-
     // service层调dao层，组合关系
     private TemplateMapper templateMapper;
 
@@ -47,9 +43,9 @@ public class TemplateServiceImpl implements ITemplateService {
         return templateMapper.queryTemplateById(id);
     }
 
-    public void downloadTemplate(HttpServletRequest request, HttpServletResponse response) {
-
-
+    public void downloadTemplate(Template template, HttpServletRequest request, HttpServletResponse response) {
+        String fileName = templateMapper.queryTemplateByNameAndVersion(template.getName(), template.getVersion()).getFile();
+        FileUtils.download(fileName, response);
     }
 
     public List<Template> queryAllTemplate() {

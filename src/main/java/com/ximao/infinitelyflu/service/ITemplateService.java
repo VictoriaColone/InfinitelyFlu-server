@@ -24,7 +24,7 @@ public interface ITemplateService {
 
     Template queryTemplateById(int id);
 
-    void downloadTemplate(HttpServletRequest request, HttpServletResponse response);
+    void downloadTemplate(Template template, HttpServletRequest request, HttpServletResponse response);
 
     List<Template> queryAllTemplate();
 }

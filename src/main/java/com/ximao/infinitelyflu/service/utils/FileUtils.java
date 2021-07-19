@@ -1,9 +1,12 @@
 package com.ximao.infinitelyflu.service.utils;
 
+import com.ximao.infinitelyflu.pojo.Template;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URLEncoder;
 import java.util.UUID;
 
 /**
@@ -15,7 +18,14 @@ public class FileUtils {
 
     // 默认上传文件路径
     private static final String UPLOAD_DIR= "/Users/apple/Documents/JavaProjects/InfinitelyFlu-server/src/main/webapp/upload";
+    // 默认下载文件路径
+    private static final String DOWNLOAD_DIR = "/Users/apple/Documents/JavaProjects/InfinitelyFlu-server/src/main/webapp/download/";
 
+    /**
+     * 文件上传
+     * @param multipartFile 上传文件
+     * @return 路径
+     */
     public static String upload(MultipartFile multipartFile) {
 
         // 返回文件的类型,在此处中并没有用到，只是列出getContentType是返回文件的类型
@@ -48,7 +58,7 @@ public class FileUtils {
         try {
             is = multipartFile.getInputStream();
             os = new FileOutputStream(dir+File.separator+newFileName);
-            //对文件进行复制
+            // 对文件进行复制
             FileCopyUtils.copy(is,os);
         } catch (IOException e) {
             e.printStackTrace();
@@ -71,5 +81,36 @@ public class FileUtils {
         // 返回文件的路径，以便保存到数据库中
         return dir1+File.separator+dir2+File.separator+newFileName;
     }
+
+    /**
+     * 文件下载
+     * @param fileName 文件名
+     * @param response 返回流
+     */
+    public static void download(String fileName, HttpServletResponse response) {
+
+        String path = DOWNLOAD_DIR + fileName;
+
+        try {
+            // 获取输入流
+            InputStream bis = new BufferedInputStream(new FileInputStream(new File(path)));
+            // 转码，免得文件名中文乱码, yutao todo 后续改成IF后缀二进制文件
+            fileName = URLEncoder.encode(  "main.xml","UTF-8");
+            // 设置文件下载头
+            response.addHeader("Content-Disposition", "attachment;filename=" + fileName);
+            // 设置文件ContentType类型，这样设置，会自动判断下载文件类型
+            response.setContentType("multipart/form-data");
+            BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
+            int len = 0;
+            while((len = bis.read()) != -1){
+                out.write(len);
+                out.flush();
+            }
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

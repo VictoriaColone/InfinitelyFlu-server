@@ -70,8 +70,13 @@ public class TemplateController {
     }
 
     @RequestMapping("/downloadTemplate")
-    public void downloadTemplate(HttpServletRequest request, HttpServletResponse response) {
-        templateService.downloadTemplate(request, response);
+    public void downloadTemplate(
+                                 HttpServletRequest request, HttpServletResponse response) {
+//        @RequestParam(value="name")String name, @RequestParam(value="version")String version,
+        Template template = new Template();
+        template.setName("test");
+        template.setVersion("0.1");
+        templateService.downloadTemplate(template, request, response);
     }
 
     @RequestMapping("/deleteTemplate/{id}")
