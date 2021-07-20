@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -69,13 +67,14 @@ public class TemplateController {
         return "redirect:/template/allTemplate";
     }
 
-    @RequestMapping("/downloadTemplate")
-    public void downloadTemplate(
+    @RequestMapping(value = "/downloadTemplate", method = RequestMethod.GET)
+    @ResponseBody
+    public void downloadTemplate(@RequestParam(value="name")String name, @RequestParam(value="version")String version,
                                  HttpServletRequest request, HttpServletResponse response) {
-//        @RequestParam(value="name")String name, @RequestParam(value="version")String version,
+
         Template template = new Template();
-        template.setName("test");
-        template.setVersion("0.1");
+        template.setName(name);
+        template.setVersion(version);
         templateService.downloadTemplate(template, request, response);
     }
 
