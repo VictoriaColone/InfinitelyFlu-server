@@ -3,7 +3,7 @@ package com.ximao.infinitelyflu.service.impl;
 import com.ximao.infinitelyflu.dao.TemplateMapper;
 import com.ximao.infinitelyflu.pojo.Template;
 import com.ximao.infinitelyflu.service.ITemplateService;
-import com.ximao.infinitelyflu.service.utils.FileUtils;
+import com.ximao.infinitelyflu.utils.FileUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;

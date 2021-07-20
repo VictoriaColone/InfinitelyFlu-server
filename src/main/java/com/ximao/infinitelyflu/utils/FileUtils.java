@@ -1,6 +1,5 @@
-package com.ximao.infinitelyflu.service.utils;
+package com.ximao.infinitelyflu.utils;
 
-import com.ximao.infinitelyflu.pojo.Template;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
