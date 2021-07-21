@@ -54,8 +54,8 @@ public class FileUtils {
         if (!file.exists()){
             file.mkdirs();
         }
-        // 生成新的UUID.randomUUID().toString()：为了防止文件名重复
-        String newFileName = UUID.randomUUID().toString().replace("-","")+"."+originalFilename.substring(originalFilename.lastIndexOf(".")+1);
+        // 生成新的UUID.randomUUID().toString()：为了防止文件名重复，尾缀为if
+        String newFileName = UUID.randomUUID().toString().replace("-","")+".if";
         InputStream is = null;
         OutputStream os = null;
         try {
