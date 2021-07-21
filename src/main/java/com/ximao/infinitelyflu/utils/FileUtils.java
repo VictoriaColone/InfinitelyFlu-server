@@ -16,13 +16,13 @@ import java.util.UUID;
 public class FileUtils {
 
     // 备选：
-    private static final String UPLOAD_DIR= "/Users/apple/Documents/JavaProjects/InfinitelyFlu-server/src/main/webapp/upload";
-    private static final String DOWNLOAD_DIR = "/Users/apple/Documents/JavaProjects/InfinitelyFlu-server/src/main/webapp/download/";
+//    private static final String UPLOAD_DIR= "/Users/apple/Documents/JavaProjects/InfinitelyFlu-server/src/main/webapp/upload";
+//    private static final String DOWNLOAD_DIR = "/Users/apple/Documents/JavaProjects/InfinitelyFlu-server/src/main/webapp/download/";
 
     // 默认上传文件路径
-//    private static final String UPLOAD_DIR= "/Users/victorcolone/JavaProjects/InfinitelyFlu-server/src/main/webapp/upload";
+    private static final String UPLOAD_DIR= "/Users/victorcolone/JavaProjects/InfinitelyFlu-server/src/main/webapp/upload";
     // 默认下载文件路径,
-//    private static final String DOWNLOAD_DIR = "/Users/victorcolone/JavaProjects/InfinitelyFlu-server/src/main/webapp/download/";
+    private static final String DOWNLOAD_DIR = "/Users/victorcolone/JavaProjects/InfinitelyFlu-server/src/main/webapp/download/";
 
     /**
      * 文件上传
