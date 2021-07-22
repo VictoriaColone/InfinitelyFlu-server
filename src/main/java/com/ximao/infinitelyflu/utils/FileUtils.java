@@ -16,18 +16,18 @@ import java.util.UUID;
 public class FileUtils {
 
     // 备选：
-//    private static final String UPLOAD_DIR= "/Users/apple/Documents/JavaProjects/InfinitelyFlu-server/src/main/webapp/upload";
-//    private static final String DOWNLOAD_DIR = "/Users/apple/Documents/JavaProjects/InfinitelyFlu-server/src/main/webapp/download/";
+    private static final String UPLOAD_DIR= "/Users/apple/Documents/JavaProjects/InfinitelyFlu-server/src/main/webapp/upload";
+    private static final String DOWNLOAD_DIR = "/Users/apple/Documents/JavaProjects/InfinitelyFlu-server/src/main/webapp/download/";
 
     // 默认上传文件路径
-    private static final String UPLOAD_DIR= "/Users/victorcolone/JavaProjects/InfinitelyFlu-server/src/main/webapp/upload";
+//    private static final String UPLOAD_DIR= "/Users/victorcolone/JavaProjects/InfinitelyFlu-server/src/main/webapp/upload";
     // 默认下载文件路径,
-    private static final String DOWNLOAD_DIR = "/Users/victorcolone/JavaProjects/InfinitelyFlu-server/src/main/webapp/download/";
+//    private static final String DOWNLOAD_DIR = "/Users/victorcolone/JavaProjects/InfinitelyFlu-server/src/main/webapp/download";
 
     /**
      * 文件上传
      * @param multipartFile 上传文件
-     * @return 路径
+     * @return 路径，结果：数据库中后缀为if，实际upload路径下文件后缀为xml
      */
     public static String upload(MultipartFile multipartFile) {
 
@@ -55,12 +55,15 @@ public class FileUtils {
             file.mkdirs();
         }
         // 生成新的UUID.randomUUID().toString()：为了防止文件名重复，尾缀为if
-        String newFileName = UUID.randomUUID().toString().replace("-","")+".if";
+        String randomName = UUID.randomUUID().toString().replace("-","");
+        String uploadFileName = randomName + ".xml";
+        String downloadFileName = randomName + ".if";
         InputStream is = null;
         OutputStream os = null;
         try {
             is = multipartFile.getInputStream();
-            os = new FileOutputStream(dir+File.separator+newFileName);
+            // 写入文件时候依旧用xml后缀
+            os = new FileOutputStream(dir + File.separator + uploadFileName);
             // 对文件进行复制
             FileCopyUtils.copy(is,os);
         } catch (IOException e) {
@@ -81,8 +84,18 @@ public class FileUtils {
                 }
             }
         }
-        // 返回文件的路径，以便保存到数据库中
-        return dir1+File.separator+dir2+File.separator+newFileName;
+        xml2Binary(dir, uploadFileName, downloadFileName);
+        // 返回文件的路径，以便保存到数据库中，写入数据库时候用if后缀
+        return dir1 + File.separator + dir2 + File.separator + downloadFileName;
+    }
+
+    /**
+     * xml转换为二进制文件
+     * @param uploadFileName     .xml文件，已经位于upload文件夹下
+     * @param downloadFileName   .if文件，生成后位于download文件夹下
+     */
+    private static void xml2Binary(String dir, String uploadFileName, String downloadFileName) {
+        
     }
 
     /**
@@ -92,13 +105,13 @@ public class FileUtils {
      */
     public static void download(String fileName, HttpServletResponse response) {
 
-        String path = DOWNLOAD_DIR + fileName;
+        String path = DOWNLOAD_DIR + File.separator + fileName;
 
         try {
             // 获取输入流
             InputStream bis = new BufferedInputStream(new FileInputStream(new File(path)));
             // 转码，免得文件名中文乱码, yutao todo 后续改成IF后缀二进制文件
-            fileName = URLEncoder.encode(  "main.xml","UTF-8");
+            fileName = URLEncoder.encode(  "main.if","UTF-8");
             // 设置文件下载头
             response.addHeader("Content-Disposition", "attachment;filename=" + fileName);
             // 设置文件ContentType类型，这样设置，会自动判断下载文件类型
