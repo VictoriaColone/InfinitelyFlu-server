@@ -43,6 +43,13 @@
       <version>2.0.2</version>
     </dependency>
 
+    <!-- json/xml相互转换工具库 -->
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20171018</version>
+    </dependency>
+
     <!--Junit-->
     <dependency>
       <groupId>junit</groupId>

@@ -1,6 +1,7 @@
 package com.ximao.infinitelyflu.service;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.ximao.infinitelyflu.pojo.Template;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,7 +25,11 @@ public interface ITemplateService {
 
     Template queryTemplateById(int id);
 
+    // 下载模板
     void downloadTemplate(Template template, HttpServletRequest request, HttpServletResponse response);
+
+    // 获取模板json数据
+    String getTemplateJson(Template template, HttpServletRequest request, HttpServletResponse response);
 
     List<Template> queryAllTemplate();
 }

@@ -1,6 +1,9 @@
 package com.ximao.infinitelyflu.utils;
 
-import com.alibaba.fastjson.JSONObject;
+import org.dom4j.Document;
+import org.dom4j.io.SAXReader;
+import org.json.JSONObject;
+import org.json.XML;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +28,7 @@ public class FileUtils {
 //    private static final String DOWNLOAD_DIR = "/Users/victorcolone/JavaProjects/InfinitelyFlu-server/src/main/webapp/download";
 
     /**
-     * 文件上传
+     * 上传文件
      * @param multipartFile 上传文件
      * @return 路径，结果：数据库中后缀为if，实际upload路径下文件后缀为xml
      */
@@ -57,7 +60,7 @@ public class FileUtils {
         // 生成新的UUID.randomUUID().toString()：为了防止文件名重复，尾缀为if
         String randomName = UUID.randomUUID().toString().replace("-","");
         String uploadFileName = randomName + ".xml";
-        String downloadFileName = randomName + ".if";
+        String downloadFileName = randomName + ".xml";
         InputStream is = null;
         OutputStream os = null;
         try {
@@ -98,28 +101,41 @@ public class FileUtils {
         
     }
 
-
     /**
      * xml转换为json
+     * @param fileName 文件名
+     * @param response 返回流
      */
-    private static void xml2Json(String dir, String uploadFileName, String downloadFileName) {
-        JSONObject jsonObject = null;
+    public static String xml2Json(String fileName, HttpServletResponse response) {
+        String path = UPLOAD_DIR + File.separator + fileName;
+        String jsonString = "";
+        // yutao todo 待跟进，此方法xml转成json会自动将同类合并成一个list，丢失顺序
+        try {
+            InputStream in = new BufferedInputStream(new FileInputStream(path));
+            SAXReader saxReader = new SAXReader();
+            Document document = saxReader.read(in);
+            String xmlString = document.asXML();
+            JSONObject jsonObject = XML.toJSONObject(xmlString);
+            jsonString = jsonObject.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return jsonString;
     }
 
     /**
-     * 文件下载
+     * 下载文件
      * @param fileName 文件名
      * @param response 返回流
      */
     public static void download(String fileName, HttpServletResponse response) {
 
         String path = DOWNLOAD_DIR + File.separator + fileName;
-
         try {
             // 获取输入流
-            InputStream bis = new BufferedInputStream(new FileInputStream(new File(path)));
+            InputStream bis = new BufferedInputStream(new FileInputStream(path));
             // 转码，免得文件名中文乱码, yutao todo 后续改成IF后缀二进制文件
-            fileName = URLEncoder.encode(  "main.if","UTF-8");
+            fileName = URLEncoder.encode(  "main.xml","UTF-8");
             // 设置文件下载头
             response.addHeader("Content-Disposition", "attachment;filename=" + fileName);
             // 设置文件ContentType类型，这样设置，会自动判断下载文件类型
@@ -136,5 +152,21 @@ public class FileUtils {
         }
     }
 
-
+    /**
+     * 删除文件
+     * @param fileName 文件名
+     */
+    public static void delete(String fileName) {
+        // yutao todo 删除文件无效
+        String downloadPath = DOWNLOAD_DIR + File.separator + fileName;
+        String uploadPath = UPLOAD_DIR + File.separator + fileName;
+        try {
+            File downloadFile = new File(downloadPath);
+            downloadFile.delete();
+            File uploadFile = new File(uploadPath);
+            uploadFile.delete();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

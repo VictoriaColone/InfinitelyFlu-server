@@ -1,5 +1,6 @@
 package com.ximao.infinitelyflu.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.ximao.infinitelyflu.dao.TemplateMapper;
 import com.ximao.infinitelyflu.pojo.Template;
 import com.ximao.infinitelyflu.service.ITemplateService;
@@ -32,6 +33,8 @@ public class TemplateServiceImpl implements ITemplateService {
     }
 
     public int deleteTemplateById(int id) {
+        String fileName = templateMapper.queryTemplateById(id).getFile();
+        FileUtils.delete(fileName);
         return templateMapper.deleteTemplateById(id);
     }
 
@@ -46,6 +49,11 @@ public class TemplateServiceImpl implements ITemplateService {
     public void downloadTemplate(Template template, HttpServletRequest request, HttpServletResponse response) {
         String fileName = templateMapper.queryTemplateByNameAndVersion(template.getName(), template.getVersion()).getFile();
         FileUtils.download(fileName, response);
+    }
+
+    public String getTemplateJson(Template template, HttpServletRequest request, HttpServletResponse response) {
+        String fileName = templateMapper.queryTemplateByNameAndVersion(template.getName(), template.getVersion()).getFile();
+        return FileUtils.xml2Json(fileName, response);
     }
 
     public List<Template> queryAllTemplate() {

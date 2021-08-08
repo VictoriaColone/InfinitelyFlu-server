@@ -1,6 +1,7 @@
 package com.ximao.infinitelyflu.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.ximao.infinitelyflu.pojo.Template;
 import com.ximao.infinitelyflu.service.ITemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +77,17 @@ public class TemplateController {
         template.setName(name);
         template.setVersion(version);
         templateService.downloadTemplate(template, request, response);
+    }
+
+    @RequestMapping(value = "/getTemplateJson", method = RequestMethod.GET)
+    @ResponseBody
+    public String getTemplateJson(@RequestParam(value="name")String name, @RequestParam(value="version")String version,
+                                      HttpServletRequest request, HttpServletResponse response) {
+
+        Template template = new Template();
+        template.setName(name);
+        template.setVersion(version);
+        return templateService.getTemplateJson(template, request, response);
     }
 
     @RequestMapping("/deleteTemplate/{id}")
