@@ -1,8 +1,8 @@
 package com.ximao.infinitelyflu.utils;
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
@@ -65,7 +65,7 @@ public class FileUtils {
             // 写入文件时候依旧用xml后缀
             os = new FileOutputStream(dir + File.separator + uploadFileName);
             // 对文件进行复制
-            FileCopyUtils.copy(is,os);
+            FileCopyUtils.copy(is, os);
         } catch (IOException e) {
             e.printStackTrace();
         }finally {
@@ -96,6 +96,14 @@ public class FileUtils {
      */
     private static void xml2Binary(String dir, String uploadFileName, String downloadFileName) {
         
+    }
+
+
+    /**
+     * xml转换为json
+     */
+    private static void xml2Json(String dir, String uploadFileName, String downloadFileName) {
+        JSONObject jsonObject = null;
     }
 
     /**
