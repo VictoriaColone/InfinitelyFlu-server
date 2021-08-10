@@ -102,11 +102,11 @@ public class FileUtils {
     }
 
     /**
-     * xml转换为json
+     * 生成特定json
      * @param fileName 文件名
      * @param response 返回流
      */
-    public static String xml2Json(String fileName, HttpServletResponse response) {
+    public static String generateJson(String fileName, HttpServletResponse response) {
         String path = UPLOAD_DIR + File.separator + fileName;
         String jsonString = "";
         // yutao todo 待跟进，此方法xml转成json会自动将同类合并成一个list，丢失顺序
@@ -116,11 +116,21 @@ public class FileUtils {
             Document document = saxReader.read(in);
             String xmlString = document.asXML();
             JSONObject jsonObject = XML.toJSONObject(xmlString);
-            jsonString = jsonObject.toString();
+            // jsonString = jsonObject.toString();
+            jsonString = xmlToJson(xmlString);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return jsonString;
+    }
+
+    /**
+     * 特定逻辑生成无数组json
+     * @param xmlString xmlString
+     */
+    private static String xmlToJson(String xmlString) {
+        // yutao todo xmlString转jsonString待实现
+        return "";
     }
 
     /**
