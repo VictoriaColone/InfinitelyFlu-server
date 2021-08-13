@@ -50,9 +50,9 @@ public class TemplateServiceImpl implements ITemplateService {
         FileUtils.download(fileName, response);
     }
 
-    public String getTemplateJson(Template template, HttpServletRequest request, HttpServletResponse response) {
+    public void getTemplateJson(Template template, HttpServletRequest request, HttpServletResponse response) {
         String fileName = templateMapper.queryTemplateByNameAndVersion(template.getName(), template.getVersion()).getFile();
-        return FileUtils.generateJson(fileName, response);
+        FileUtils.generateJson(fileName, response);
     }
 
     public List<Template> queryAllTemplate() {

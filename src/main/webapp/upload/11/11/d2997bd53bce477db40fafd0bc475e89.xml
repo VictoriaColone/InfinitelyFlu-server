@@ -1,18 +1,25 @@
-<FrameLayout
-        width="match_parent"
-        height="match_parent">
+<LinearLayout-1
+        layout_width="match_parent"
+        layout_height="match_parent"
+        orientation="vertical">
 
-    <TextView
+    <ImageView-1
+            layout_width="200dp"
+            layout_height="200dp"
+            src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg2.3png.com%2F63ad9ba23c0e459a89294f6db0d250c05a0b.png"/>
+
+    <TextView-1
             gravityInParent="center"
             gravity="center"
-            width="200dp"
-            height="20dp"
+            layout_width="200dp"
+            layout_height="20dp"
             text="Welcome to InfinitelyFlu"/>
-     <TextView
+
+     <TextView-2
             gravityInParent="center"
             gravity="center"
-            width="200dp"
-            height="20dp"
+            layout_width="200dp"
+            layout_height="20dp"
             text="Welcome to InfinitelyFlu2"/>
 
-</FrameLayout>
+</LinearLayout-1>

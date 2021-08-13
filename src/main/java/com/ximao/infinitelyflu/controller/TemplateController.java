@@ -81,16 +81,17 @@ public class TemplateController {
 
     @RequestMapping(value = "/getTemplateJson", method = RequestMethod.GET)
     @ResponseBody
-    public String getTemplateJson(@RequestParam(value="name")String name, @RequestParam(value="version")String version,
+    public void getTemplateJson(@RequestParam(value="name")String name, @RequestParam(value="version")String version,
                                       HttpServletRequest request, HttpServletResponse response) {
 
         Template template = new Template();
         template.setName(name);
         template.setVersion(version);
-        return templateService.getTemplateJson(template, request, response);
+        templateService.getTemplateJson(template, request, response);
     }
 
     @RequestMapping("/deleteTemplate/{id}")
+    @ResponseBody
     public String deleteTemplate(@PathVariable("id") int id) {
         templateService.deleteTemplateById(id);
         return "redirect:/template/allTemplate";

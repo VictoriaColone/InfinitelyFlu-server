@@ -29,7 +29,7 @@ public interface ITemplateService {
     void downloadTemplate(Template template, HttpServletRequest request, HttpServletResponse response);
 
     // 获取模板json数据
-    String getTemplateJson(Template template, HttpServletRequest request, HttpServletResponse response);
+    void getTemplateJson(Template template, HttpServletRequest request, HttpServletResponse response);
 
     List<Template> queryAllTemplate();
 }

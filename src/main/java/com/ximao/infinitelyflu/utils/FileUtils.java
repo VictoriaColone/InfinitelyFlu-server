@@ -19,13 +19,13 @@ import java.util.UUID;
 public class FileUtils {
 
     // 备选：
-    private static final String UPLOAD_DIR= "/Users/apple/Documents/JavaProjects/InfinitelyFlu-server/src/main/webapp/upload";
-    private static final String DOWNLOAD_DIR = "/Users/apple/Documents/JavaProjects/InfinitelyFlu-server/src/main/webapp/download/";
+//    private static final String UPLOAD_DIR= "/Users/apple/Documents/JavaProjects/InfinitelyFlu-server/src/main/webapp/upload";
+//    private static final String DOWNLOAD_DIR = "/Users/apple/Documents/JavaProjects/InfinitelyFlu-server/src/main/webapp/download/";
 
     // 默认上传文件路径
-//    private static final String UPLOAD_DIR= "/Users/victorcolone/JavaProjects/InfinitelyFlu-server/src/main/webapp/upload";
+    private static final String UPLOAD_DIR= "/Users/victorcolone/JavaProjects/InfinitelyFlu-server/src/main/webapp/upload";
     // 默认下载文件路径,
-//    private static final String DOWNLOAD_DIR = "/Users/victorcolone/JavaProjects/InfinitelyFlu-server/src/main/webapp/download";
+    private static final String DOWNLOAD_DIR = "/Users/victorcolone/JavaProjects/InfinitelyFlu-server/src/main/webapp/download";
 
     /**
      * 上传文件
@@ -106,31 +106,29 @@ public class FileUtils {
      * @param fileName 文件名
      * @param response 返回流
      */
-    public static String generateJson(String fileName, HttpServletResponse response) {
+    public static void generateJson(String fileName, HttpServletResponse response) {
         String path = UPLOAD_DIR + File.separator + fileName;
         String jsonString = "";
-        // yutao todo 待跟进，此方法xml转成json会自动将同类合并成一个list，丢失顺序
+        JSONObject jsonObject;
+        response.setContentType("application/json");
+        PrintWriter out = null;
         try {
             InputStream in = new BufferedInputStream(new FileInputStream(path));
             SAXReader saxReader = new SAXReader();
-            Document document = saxReader.read(in);
+            Document document = (Document) saxReader.read(in);
             String xmlString = document.asXML();
-            JSONObject jsonObject = XML.toJSONObject(xmlString);
-            // jsonString = jsonObject.toString();
-            jsonString = xmlToJson(xmlString);
+            jsonObject = XML.toJSONObject(xmlString);
+            out = response.getWriter();
+            out.write(jsonObject.toString());
+            // 强制将缓冲区中的数据发送出去,不必等到缓冲区满
+            out.flush();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            if (out != null) {
+                out.close();
+            }
         }
-        return jsonString;
-    }
-
-    /**
-     * 特定逻辑生成无数组json
-     * @param xmlString xmlString
-     */
-    private static String xmlToJson(String xmlString) {
-        // yutao todo xmlString转jsonString待实现
-        return "";
     }
 
     /**
@@ -144,8 +142,8 @@ public class FileUtils {
         try {
             // 获取输入流
             InputStream bis = new BufferedInputStream(new FileInputStream(path));
-            // 转码，免得文件名中文乱码, yutao todo 后续改成IF后缀二进制文件
-            fileName = URLEncoder.encode(  "main.xml","UTF-8");
+            // 转码，免得文件名中文乱码
+            fileName = URLEncoder.encode("main.xml","UTF-8");
             // 设置文件下载头
             response.addHeader("Content-Disposition", "attachment;filename=" + fileName);
             // 设置文件ContentType类型，这样设置，会自动判断下载文件类型
