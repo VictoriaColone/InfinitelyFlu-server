@@ -8,18 +8,26 @@
             layout_height="200dp"
             src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg2.3png.com%2F63ad9ba23c0e459a89294f6db0d250c05a0b.png"/>
 
-    <TextView-1
-            gravityInParent="center"
-            gravity="center"
-            layout_width="200dp"
-            layout_height="20dp"
-            text="Welcome to InfinitelyFlu"/>
+    <LinearLayout-2
+            layout_width="wrap_content"
+            layout_height="wrap_content"
+            orientation="horizontal">
+        <TextView-1
+                gravityInParent="center"
+                gravity="center"
+                layout_width="100dp"
+                layout_height="20dp"
+                text="Welcome to InfinitelyFlu"/>
 
-     <TextView-2
-            gravityInParent="center"
-            gravity="center"
-            layout_width="200dp"
-            layout_height="20dp"
-            text="Welcome to InfinitelyFlu2"/>
+        <TextView-2
+                gravityInParent="center"
+                gravity="center"
+                layout_width="100dp"
+                layout_height="20dp"
+                text="Welcome to InfinitelyFlu2"/>
+
+    </LinearLayout-2>
+
+
 
 </LinearLayout-1>
