@@ -28,4 +28,74 @@
 
     </LinearLayout-2>
 
+    <TextView-3
+            gravityInParent="center"
+            gravity="center"
+            layout_width="100dp"
+            layout_height="60dp"
+            text="Welcome to InfinitelyFlu2"/>
+
+    <TextView-4
+            gravityInParent="center"
+            gravity="center"
+            layout_width="100dp"
+            layout_height="60dp"
+            text="Welcome to InfinitelyFlu2"/>
+
+    <TextView-5
+            gravityInParent="center"
+            gravity="center"
+            layout_width="100dp"
+            layout_height="60dp"
+            text="Welcome to InfinitelyFlu2"/>
+
+    <TextView-6
+            gravityInParent="center"
+            gravity="center"
+            layout_width="100dp"
+            layout_height="60dp"
+            text="Welcome to InfinitelyFlu2"/>
+
+    <TextView-7
+            gravityInParent="center"
+            gravity="center"
+            layout_width="100dp"
+            layout_height="60dp"
+            text="Welcome to InfinitelyFlu2"/>
+
+    <TextView-8
+            gravityInParent="center"
+            gravity="center"
+            layout_width="100dp"
+            layout_height="60dp"
+            text="Welcome to InfinitelyFlu2"/>
+
+    <TextView-9
+            gravityInParent="center"
+            gravity="center"
+            layout_width="100dp"
+            layout_height="60dp"
+            text="Welcome to InfinitelyFlu2"/>
+
+    <TextView-10
+            gravityInParent="center"
+            gravity="center"
+            layout_width="100dp"
+            layout_height="60dp"
+            text="Welcome to InfinitelyFlu2"/>
+
+    <TextView-11
+            gravityInParent="center"
+            gravity="center"
+            layout_width="100dp"
+            layout_height="60dp"
+            text="Welcome to InfinitelyFlu2"/>
+
+    <TextView-12
+            gravityInParent="center"
+            gravity="center"
+            layout_width="100dp"
+            layout_height="60dp"
+            text="Welcome to InfinitelyFlu2"/>
+
 </LinearLayout-1>
