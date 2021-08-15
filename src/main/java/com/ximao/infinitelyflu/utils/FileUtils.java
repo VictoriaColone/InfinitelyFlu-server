@@ -3,13 +3,13 @@ package com.ximao.infinitelyflu.utils;
 import org.dom4j.Document;
 import org.dom4j.io.SAXReader;
 import org.json.JSONObject;
-import org.json.XML;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
 import java.util.UUID;
+
 
 /**
  * 文件工具类
@@ -117,7 +117,9 @@ public class FileUtils {
             SAXReader saxReader = new SAXReader();
             Document document = (Document) saxReader.read(in);
             String xmlString = document.asXML();
-            jsonObject = XML.toJSONObject(xmlString);
+            System.out.println("yutao=======" + xmlString);
+            jsonObject = NewXML.toJSONObject(xmlString, true);
+            System.out.println("yutao=======" + jsonObject.toString());
             out = response.getWriter();
             out.write(jsonObject.toString());
             // 强制将缓冲区中的数据发送出去,不必等到缓冲区满
