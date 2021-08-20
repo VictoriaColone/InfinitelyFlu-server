@@ -6,7 +6,19 @@
     <ImageView-1
             layout_width="200dp"
             layout_height="200dp"
-            src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg2.3png.com%2F63ad9ba23c0e459a89294f6db0d250c05a0b.png"/>
+            src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg2.3png.com%2F63ad9ba23c0e459a89294f6db0d250c05a0b.png">
+
+        <onClick
+            class="com.ximao.infinitelyflu_mobile.utils.router.Nav"
+            method="longToast">
+                <parameters
+                        type="android.content.Context"/>
+                <parameters
+                    type="java.lang.String"
+                    value="hello, InfinitelyFlu~~~"/>
+        </onClick>
+
+    </ImageView-1>>
 
     <LinearLayout-2
             layout_width="wrap_content"
@@ -17,7 +29,18 @@
                 gravity="center"
                 layout_width="100dp"
                 layout_height="20dp"
-                text="Welcome to InfinitelyFlu"/>
+                text="Welcome to InfinitelyFlu">
+            <onClick
+                    class="com.ximao.infinitelyflu_mobile.utils.router.Nav"
+                    method="shortToast">
+                <parameters
+                        type="android.content.Context"/>
+                <parameters
+                        type="java.lang.String"
+                        value="hello, InfinitelyFlu~~~"/>
+            </onClick>
+
+        </TextView-1>
 
         <TextView-2
                 gravityInParent="center"
