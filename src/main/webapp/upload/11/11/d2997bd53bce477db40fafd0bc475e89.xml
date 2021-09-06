@@ -10,12 +10,12 @@
 
         <onClick
             class="com.ximao.infinitelyflu_mobile.utils.router.Nav"
-            method="longToast">
+            method="ifToUri">
                 <parameters
                         type="android.content.Context"/>
                 <parameters
                     type="java.lang.String"
-                    value="hello, InfinitelyFlu~~~"/>
+                    value="infinitelyflu://com.ximao.infinitelyflu_mobile/WebViewActivity"/>
         </onClick>
 
     </ImageView-1>
