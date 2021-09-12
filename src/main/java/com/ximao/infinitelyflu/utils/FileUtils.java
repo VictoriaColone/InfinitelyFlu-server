@@ -19,13 +19,13 @@ import java.util.UUID;
 public class FileUtils {
 
     // 备选：
-//    private static final String UPLOAD_DIR= "/Users/apple/Documents/JavaProjects/InfinitelyFlu-server/src/main/webapp/upload";
-//    private static final String DOWNLOAD_DIR = "/Users/apple/Documents/JavaProjects/InfinitelyFlu-server/src/main/webapp/download/";
+    private static final String UPLOAD_DIR= "/Users/apple/Documents/JavaProjects/InfinitelyFlu-server/src/main/webapp/upload";
+    private static final String DOWNLOAD_DIR = "/Users/apple/Documents/JavaProjects/InfinitelyFlu-server/src/main/webapp/download/";
 
     // 默认上传文件路径
-    private static final String UPLOAD_DIR= "/Users/victorcolone/JavaProjects/InfinitelyFlu-server/src/main/webapp/upload";
+//    private static final String UPLOAD_DIR= "/Users/victorcolone/JavaProjects/InfinitelyFlu-server/src/main/webapp/upload";
     // 默认下载文件路径,
-    private static final String DOWNLOAD_DIR = "/Users/victorcolone/JavaProjects/InfinitelyFlu-server/src/main/webapp/download";
+//    private static final String DOWNLOAD_DIR = "/Users/victorcolone/JavaProjects/InfinitelyFlu-server/src/main/webapp/download";
 
     /**
      * 上传文件
@@ -87,7 +87,7 @@ public class FileUtils {
                 }
             }
         }
-        xml2Binary(dir, uploadFileName, downloadFileName);
+//        xml2Binary(dir, uploadFileName, downloadFileName);
         // 返回文件的路径，以便保存到数据库中，写入数据库时候用if后缀
         return dir1 + File.separator + dir2 + File.separator + downloadFileName;
     }
@@ -108,7 +108,6 @@ public class FileUtils {
      */
     public static void generateJson(String fileName, HttpServletResponse response) {
         String path = UPLOAD_DIR + File.separator + fileName;
-        String jsonString = "";
         JSONObject jsonObject;
         response.setContentType("application/json");
         PrintWriter out = null;
@@ -177,6 +176,53 @@ public class FileUtils {
             uploadFile.delete();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * 更新文件
+     * @param fileName 文件名
+     */
+    public static void update(String fileName, MultipartFile multipartFile) {
+        String uploadPath = UPLOAD_DIR + File.separator + fileName;
+        File uploadFile = new File(uploadPath);
+        // 先清空文件内容
+        try {
+            if(!uploadFile.exists()) {
+                uploadFile.createNewFile();
+            }
+            FileWriter fileWriter =new FileWriter(uploadFile);
+            fileWriter.write("");
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        InputStream is = null;
+        OutputStream os = null;
+        try {
+            is = multipartFile.getInputStream();
+            // 写入文件时候依旧用xml后缀
+            os = new FileOutputStream(fileName);
+            // 对文件进行复制
+            FileCopyUtils.copy(is, os);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if (is!=null){
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (os!=null){
+                try {
+                    os.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }

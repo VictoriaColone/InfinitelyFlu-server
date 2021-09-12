@@ -63,8 +63,11 @@ public class TemplateController {
     }
 
     @RequestMapping("/updateTemplate")
-    public String updateTemplate(Template template) {
-        templateService.updateTemplate(template);
+    public String updateTemplate(String name, String version, int id, MultipartFile multipartFile) {
+        Template template = new Template();
+        template.setName(name);
+        template.setVersion(version);
+        templateService.updateTemplate(template, id, multipartFile);
         return "redirect:/template/allTemplate";
     }
 

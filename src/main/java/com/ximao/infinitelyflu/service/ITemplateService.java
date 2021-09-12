@@ -1,13 +1,12 @@
 package com.ximao.infinitelyflu.service;
 
 
-import com.alibaba.fastjson.JSONObject;
 import com.ximao.infinitelyflu.pojo.Template;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+
 
 /**
  * 模板数据服务接口
@@ -21,7 +20,7 @@ public interface ITemplateService {
 
     int deleteTemplateById(int id);
 
-    int updateTemplate(Template template);
+    int updateTemplate(Template template, int id, MultipartFile multipartFile);
 
     Template queryTemplateById(int id);
 

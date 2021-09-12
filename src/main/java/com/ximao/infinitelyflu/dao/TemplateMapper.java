@@ -18,7 +18,7 @@ public interface TemplateMapper {
 
     int deleteTemplateById(@Param("id") int id);
 
-    int updateTemplate(Template template);
+    int updateTemplate(@Param("id") int id);
 
     Template queryTemplateById(@Param("id") int id);
 

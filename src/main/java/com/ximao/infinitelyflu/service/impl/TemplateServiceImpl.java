@@ -37,8 +37,10 @@ public class TemplateServiceImpl implements ITemplateService {
         return templateMapper.deleteTemplateById(id);
     }
 
-    public int updateTemplate(Template template) {
-        return templateMapper.updateTemplate(template);
+    public int updateTemplate(Template template, int id, MultipartFile multipartFile) {
+        String fileName = templateMapper.queryTemplateById(id).getFile();
+        FileUtils.update(fileName, multipartFile);
+        return templateMapper.updateTemplate(id);
     }
 
     public Template queryTemplateById(int id) {
