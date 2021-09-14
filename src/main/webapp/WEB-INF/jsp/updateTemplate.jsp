@@ -20,11 +20,10 @@
             </div>
         </div>
 
-        <form action="${pageContext.request.contextPath}/template/updateTemplate" method="post">
-            <input type="hidden" name="id" value="${template.getId()}"/>
+        <form action="${pageContext.request.contextPath}/template/updateTemplate" method="post"  enctype="multipart/form-data">
             模板名称：<input type="text" name="name" value="${template.getName()}"/>
             模板版本号：<input type="text" name="version" value="${template.getVersion()}"/><br>
-            <a href="javascript:;" class="a-upload"><input type="file" name="" id="file" accept=".xml" display="inline"></a><br>
+            <a href="javascript:;" class="a-upload"><input type="file" name="multipartFile" accept=".xml" display="inline"></a><br>
             <input type="submit" value="提交" align="center"/>
         </form>
 

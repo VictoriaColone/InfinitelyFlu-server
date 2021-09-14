@@ -20,7 +20,7 @@ public interface ITemplateService {
 
     int deleteTemplateById(int id);
 
-    int updateTemplate(Template template, int id, MultipartFile multipartFile);
+    int updateTemplate(Template template, MultipartFile multipartFile);
 
     Template queryTemplateById(int id);
 

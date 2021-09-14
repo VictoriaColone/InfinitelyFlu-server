@@ -50,7 +50,7 @@ public class FileUtils {
         // 拿到upload下的n目录下的目录名称upload/n/n
         int dir2 = (hashCode & 0xf0) >> 4;
         // 拼接路径，path是传过来的文件保存路径，即upload的真实路径,
-        String dir = UPLOAD_DIR + File.separator+dir1 + File.separator + dir2;
+        String dir = UPLOAD_DIR + File.separator + dir1 + File.separator + dir2;
         // 把路径丢到File文件中
         File file = new File(dir);
         // 如果d:\1\2这个文件夹不存在，才创建
@@ -203,7 +203,7 @@ public class FileUtils {
         try {
             is = multipartFile.getInputStream();
             // 写入文件时候依旧用xml后缀
-            os = new FileOutputStream(fileName);
+            os = new FileOutputStream(uploadPath);
             // 对文件进行复制
             FileCopyUtils.copy(is, os);
         } catch (IOException e) {

@@ -17,9 +17,9 @@
     </delete>
 
     <!--更新Template-->
-    <update id="updateTemplate" parameterType="Template">
+    <update id="updateTemplate">
         update infinitely_flu.template
-        set name = #{name}, version = #{version}
+        set name = #{name}, version = #{version} + 0.1
         where id = #{id}
     </update>
 

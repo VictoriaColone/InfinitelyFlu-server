@@ -1,0 +1,12 @@
+<FrameLayout-1
+        width="match_parent"
+        height="match_parent">
+
+    <TextView-1
+            layout_gravity="center"
+            gravity="center"
+            width="200dp"
+            height="20dp"
+            text="Welcome to InfinitelyFlu"/>
+
+</FrameLayout-1>
